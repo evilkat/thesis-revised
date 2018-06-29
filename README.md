@@ -1,5 +1,7 @@
-Requirement for CMSC 300 Master's Thesis
-Predicting Stock Price Movement Using Interaction-Weighted Sentiment Analysis on Finance Related Tweets
+#Requirement for CMSC 300 Master's Thesis \n
+
+Predicting Stock Price Movement Using Interaction-Weighted Sentiment Analysis on Finance Related Tweets \n
+
 Katherine Loren Tan
 
 Gist of the Study
