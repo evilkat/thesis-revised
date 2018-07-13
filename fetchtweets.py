@@ -25,6 +25,7 @@ def cleanTweets(tweet,f):
 def getTweets(filename,search_query):
 	fname = './dataset/'+datetime.datetime.today().strftime('%Y-%m-%d') + search_query
 	tweet_count = 0
+	print(fname)
 	print("Downloading max {0} tweets".format(max_tweets))
 	max_id = -1
 	count_new = 0
@@ -55,14 +56,14 @@ def getTweets(filename,search_query):
 						cleanTweets(tweet_value,f)	
 					
 					tweet_count += len(new_tweets)
-					print("downloaded {0} tweets".format(tweet_count))
+					#print("downloaded {0} tweets".format(tweet_count))
 				if len(new_tweets) != 0:
-					print('new_tweets[0] ',new_tweets[0].id)
+					#print('new_tweets[0] ',new_tweets[0].id)
 					max_id = new_tweets[-1].id
 				else:
 					max_id = -1
 			except tweepy.TweepError as e:
-				print ('some error: '+str(e))
+				#print ('some error: '+str(e))
 				break
 	print("Downloaded {0} tweets, Saved to {1}".format(tweet_count,fname))
 

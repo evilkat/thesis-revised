@@ -6,7 +6,7 @@ def clean(tweet):
 	
 	#for create at
 	tweet_create=tweet['created_at'].replace(' ','')
-	print(tweet_create)
+	#print(tweet_create)
 
 	#for id
 	tweet_id = str(tweet['id'])
@@ -14,7 +14,7 @@ def clean(tweet):
 	#for textvalue
 	tweet_text = str(tweet['text'].encode('ascii','ignore'))
 	#tweet_text=p.clean(tweet_text)
-	print(tweet_text)
+	#print(tweet_text)
 
 	#for retweet_count
 	tweet_rc = str(tweet['retweet_count']) 
