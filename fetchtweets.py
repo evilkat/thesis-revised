@@ -22,8 +22,10 @@ def cleanTweets(tweet,f):
 		f.write(tweet_string)
 	except UnicodeError:
 		print("UnicodeError")
+
+#gets the tweets from twitter
 def getTweets(filename,search_query):
-	fname = './dataset/'+datetime.datetime.today().strftime('%Y-%m-%d') + search_query
+	fname = './dataset/'+datetime.datetime.today().strftime('%Y-%m-%d') + search_query				#making the filename of the tweets data and the query given
 	tweet_count = 0
 	print(fname)
 	print("Downloading max {0} tweets".format(max_tweets))
@@ -78,5 +80,5 @@ if (not api):
 	print("Can't Authenticate")
 	sys.exit(-1)
 else:
-	getTweets("sample",sys.argv[1])
+	getTweets("sample",sys.argv[1]) #gets the argument when the fetchtweets.py is runned. e.g. python fetchtweets.py $AAPL
 

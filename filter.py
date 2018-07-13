@@ -2,6 +2,8 @@
 import os
 import preprocessor as p
 
+
+#cleans the tweet to be placed in the textfile
 def clean(tweet):
 	
 	#for create at
