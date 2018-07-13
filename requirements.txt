@@ -5,3 +5,4 @@ pip 10
 mongodb 4.0 (community)
 tweepy 3.6
 jsonpickle 0.9
+tweet-preprocessor
