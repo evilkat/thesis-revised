@@ -6,3 +6,4 @@ mongodb 4.0 (community)
 tweepy 3.6
 jsonpickle 0.9
 tweet-preprocessor
+preprocessing 0.1.13
