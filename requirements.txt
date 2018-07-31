@@ -1,7 +1,7 @@
 You need to install the following
 tensorflow 1.0
 python 3.5
-pip 10
+pip 18
 mongodb 4.0 (community)
 tweepy 3.6
 jsonpickle 0.9
