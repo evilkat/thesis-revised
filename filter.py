@@ -34,32 +34,6 @@ def clean(tweet):
 	tweet_string = str(tweet_create) + ' ' + str(tweet_id) + ' ' + str(tweet_text) + ' ' + tweet_rc + ' ' + tweet_fc + ' ' + tweet_engage + '\n'
 	return tweet_string 
 
-'''
-#cleans the text for insert in database
-def formatText(textlist):
-	newtext = ' '
-	for line in textlist:
-		line = line.strip("'")
-		#line = line.strip("RT:")
-		line = line.strip('"')
-		newtext = newtext + ' ' + line
-	newtext = newtext[4:]
-	#print(newtext)
-	newtext = p.clean(newtext)
-	print(newtext)
-
-
-#this function is for the dictionary for eliminating duplicate tweets and RTs	
-#def formatData(data):
-
-def readFile(filename):
-	rf = open('./dataset/'+filename,'r')
-	data = list()
-	for line in rf:
-		line=line[:-1]
-		data = line.split(" ")
-		textlist = data[2:-3]
-		formatText(textlist)
 
 
 def cleaningFile():
@@ -68,29 +42,6 @@ def cleaningFile():
 	for file in arr:
 		readFile(file)
 		break			#remove this if cleaning is done
-
-
-
-
-'''
-
-def readFile(filename):
-	rf = open('./dataset/'+filename,'r')
-	for line in rf:
-		line = line[:-1]
-		message = line[48:len(line)-7]
-		data = line.split(" ")
-		print(data)
-		created_at = data[0]
-		tweet_id = data[1]
-		retweet_count = data[len(data)-3]
-		favorite_count = data[len(data)-2]
-		user_mentions = data[len(data)-1]
-		print(created_at,tweet_id,retweet_count,favorite_count,user_mentions)
-		
-		#data = line.split(" ")
-		
-		#print(data)
 
 
 

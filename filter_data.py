@@ -1,7 +1,8 @@
 import re
 def readFile(filename):
 	data_set = dict()
-	rf = open(filename,'r')
+	
+	rf = open('./dataset/'+filename,'r')
 	
 	for line in rf:
 		line = line[:-1]
@@ -36,63 +37,40 @@ def getAlphaNumeric(data_text):
 	for dt in data:
 		if re.match(r"^https:// +",dt):
 			continue
-		elif re.match(r"^\\$ +",dt):
+		elif re.match(r"https + ",dt):
 			continue
-		elif re.match(r"^# +",dt):
+		elif re.match(r"^\\$ + ",dt):
 			continue
-		elif re.match(r"^@+",dt):
+		elif re.match(r"^# + ",dt):
 			continue
-		elif re.match(r"bRT",dt):
+		elif re.match(r"^@+ ",dt):
+			continue
+		elif re.match(r"bRT +",dt):
+			continue
+		elif re.match(r" RT +",dt):
 			continue
 		else:
 			ndt = re.sub(r"[^A-Za-z0-9]+", '', dt)
 			clean_data = clean_data + ndt + ' '    	
-	print(clean_data)
+	return clean_data[2:len(clean_data)-1]
+
+
+def checkduplicate(datadict,clean_data,created_at,user_mentions,favorite_count,retweet_count):
+	interactdict = dict()
+	if clean_data in datadict:
+		return datadict
+	else:
+		interactdict["created_at"] = created_at
+		interactdict["favorite_count"] = favorite_count
+		interactdict["retweet_count"] = retweet_count
+		interactdict["user_mentions"] = user_mentions 
+		datadict[clean_data] = interactdict
+
+		return datadict
+
 	
-#print(ftext)
-
-		#ftext = " ".join (filter(lambda x:x[0]!='$',ftext.split()))
-#print(ftext)
-
-		#re.sub(r"\\\n+",'',ftext)
-#print(ftext)
-
-		#re.sub(r"\\\n\n+",'',ftext)
-	#print(ftext)
-
-	
-
-
-	'''
-	#remove @
-	ftext = " ".join (filter(lambda x:x[0]!='$',ftext.split()))
-	print(ftext)
-	
-	#remove $
-	
-	ftext = re.match(r"(\w+)(\w+)",ftext)
-	print(ftext)
-	
-	'''
-
-
-
-
-'''
-def cleanDataset(data_set):
-	clean_data = dict()
-	for line in data_set:
-		line = line.split(" ")
-		clean_data['created_at'] = line[0]
-		clean_data['id'] = line[1]
-		clean_data['retweet_count'] = line[-3]
-		clean_data['favorite_count'] = line[-2]
-		clean_data['user_mentions'] = line[-1]
-		print(clean_data)
-	print(data_set)
-
-cleanDataset(readFile('sample.txt'))
-'''
-data_set=readFile('sample.txt')
-for i in data_set:
-	print(getAlphaNumeric(data_set[i]['text']))
+def createClean(filename,datadict):
+	wf = open('./datacleaning/'+filename,"a")
+	for i in datadict:
+		wf.write(i+' '+datadict[i]["created_at"]+' '+datadict[i]["favorite_count"]+' '+datadict[i]['retweet_count']+' '+datadict[i]['user_mentions']+'\n')
+	wf.close()
