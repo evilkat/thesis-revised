@@ -1,5 +1,7 @@
 #Ignore the folder named 'dataset'
 dataset/*
-
+stocks/*
+datacleaning/*
+dataset_insert/*
 #ignore
 __pycache__
