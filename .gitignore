@@ -3,5 +3,12 @@ dataset/*
 stocks/*
 datacleaning/*
 dataset_insert/*
+datavalues/*
+wdc/*
+textblob/*
+nltk/*
 #ignore
 __pycache__
+
+#ignore
+

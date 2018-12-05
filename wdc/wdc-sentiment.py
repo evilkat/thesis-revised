@@ -1,5 +1,6 @@
 from __future__ import print_function
 import json
+import pandas
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 \
   import Features,EntitiesOptions,KeywordsOptions
@@ -10,11 +11,12 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
   version='2018-03-16')
 
 response = natural_language_understanding.analyze(
-  text='IBM is an American multinational technology company ' 
-       'headquartered in Armonk, New York, United States, ' 
-       'with operations in over 170 countries.',
-  features = Features(entities=EntitiesOptions(emotion=True,sentiment=True,limit=2),keywords=KeywordsOptions(emotion=True,sentiment=True,limit=2))
+  text='selfdriving and electric vehicles are combining to make the cars of the future',
+  features = Features(entities=EntitiesOptions(emotion=True,sentiment=True,limit=2),keywords=KeywordsOptions(emotion=True,sentiment=True))
   ).get_result()
 
-#print(response)
-print(json.dumps(response))
+print(response)
+print(type(response))
+#value = json.loads(response)
+#print(type(value))
+#print(value)
