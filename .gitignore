@@ -4,9 +4,9 @@ stocks/*
 datacleaning/*
 dataset_insert/*
 datavalues/*
-wdc/*
-textblob/*
-nltk/*
+wdc/withsentiment/*
+textblob/withsentiment/*
+nltk/withsentiment/*
 #ignore
 __pycache__
 
