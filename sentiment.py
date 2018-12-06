@@ -38,8 +38,10 @@ def getRecord(company):
 			if date in ['2018-07-26','2018-07-27','2018-07-30','2018-08-01','2018-08-02','2018-08-06','2018-08-07','2018-08-08','2018-08-09','2018-08-10','2018-08-13','2018-08-14','2018-08-15','2018-08-16']:
 				continue
 			else:
-				for record in collection.find({'date':date}):
+				cursor = collection.find({'date':date},no_cursor_timeout = True)
+				for record in cursor:
 					count=printToFile(record,company,count)
+		cursor.close()
 	except BaseException as e:
 		print(e)
 		print("Failed fetch")
