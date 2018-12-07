@@ -4,23 +4,38 @@ import numpy as np
 import pymongo
 from pymongo import MongoClient
 
+#july
+#listdate = ['2018-07-26','2018-07-27','2018-07-30']
+#august
+#listdate = ['2018-08-01','2018-08-02','2018-08-06','2018-08-07','2018-08-08','2018-08-09','2018-08-10','2018-08-13','2018-08-14','2018-08-15','2018-08-20','2018-08-23','2018-08-28','2018-08-30']
+#september
+#listdate = ['2018-09-03','2018-09-04','2018-09-05','2018-09-06','2018-09-07','2018-09-10','2018-09-11','2018-09-12','2018-09-13','2018-09-17','2018-09-18','2018-09-19','2018-09-20','2018-09-21','2018-09-24','2018-09-25','2018-09-26','2018-09-27','2018-09-29',]
+#october
+#listdate = ['2018-10-01','2018-10-02','2018-10-03','2018-10-04','2018-10-05','2018-10-08','2018-10-09','2018-10-10','2018-10-11','2018-10-12','2018-10-15','2018-10-16','2018-10-17','2018-10-18','2018-10-19','2018-10-22','2018-10-23','2018-10-24','2018-10-29','2018-10-30',]
+#november
+#listdate = ['2018-11-05','2018-11-06','2018-11-13','2018-11-14','2018-11-15','2018-11-19','2018-11-21']
 client = MongoClient("localhost",27017)
 db = client["thesis"]
 collection = db['AAPL']
-date = '2018-07-26'
-data = pd.DataFrame(list(collection.find({'date':date})))
 
-data = data.drop_duplicates()
-data['message'] = data['message'].astype('str')
-data['retweet_count'] = data['retweet_count'].replace(r'\s+',np.nan,regex=True)
-data['engage_count'] = data['engage_count'].replace(r'\s+',np.nan,regex=True)
-data['favorite_count'] = data['favorite_count'].replace(r'\s+',np.nan,regex=True)
-data = data.dropna()
-sentiment_scores = list()
-for line in data['message']:
-	text_sentiment = TextBlob(line)
-	sentiment_scores.append(text_sentiment.polarity)
-data['sentiment'] = sentiment_scores
-data = data.drop(data[(data['sentiment']==0)].index)
-print(data.head())
-print(data.tail())
+for date in listdate:
+	#date = '2018-08-06'
+	data = pd.DataFrame(list(collection.find({'date':date})))
+
+	data = data.drop_duplicates()
+	data['message'] = data['message'].astype('str')
+	data['retweet_count'] = data['retweet_count'].replace(r'\s+',np.nan,regex=True)
+	data['engage_count'] = data['engage_count'].replace(r'\s+',np.nan,regex=True)
+	data['favorite_count'] = data['favorite_count'].replace(r'\s+',np.nan,regex=True)
+	data = data.dropna()
+	sentiment_scores = list()
+	for line in data['message']:
+		text_sentiment = TextBlob(line)
+		sentiment_scores.append(text_sentiment.polarity)
+	
+	data['sentiment'] = sentiment_scores
+	data = data.drop(data[(data['sentiment']==0)].index)
+	print('printing to file '+date)
+	data.to_csv('withsentiment/AAPL'+date+'.csv',index=False)
+
+

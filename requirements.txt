@@ -10,3 +10,4 @@ preprocessing 0.1.13
 pymongo
 fix-yahoo-finance
 pandas_datareader
+vaderSentiment
