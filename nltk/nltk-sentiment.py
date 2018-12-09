@@ -8,7 +8,7 @@ import computeMean
 
 
 def writeData(date,mean_sentiment,neg,pos):
-	fw = open('sentimentFB.csv','a')
+	fw = open('sentimentMSFT.csv','a')
 	fw.write(date+','+str(mean_sentiment)+','+str(neg)+','+str(pos)+'\n')
 	fw.close()
 #july to august
@@ -18,7 +18,7 @@ listdate = ['2018-07-26','2018-07-27','2018-07-30','2018-08-01','2018-08-02','20
 #listdate = ['2018-11-05','2018-11-06','2018-11-13','2018-11-14','2018-11-15','2018-11-19','2018-11-21']
 client = MongoClient("localhost",27017)
 db = client["thesis"]
-collection = db['FB']
+collection = db['MSFT']
 
 
 for date in listdate:
@@ -41,4 +41,4 @@ for date in listdate:
 	mean_sentiment,neg,pos=computeMean.computeMean(data,date)
 	writeData(date,mean_sentiment,neg,pos)
 	print('printing to file '+date)
-	data.to_csv('withsentiment/FB'+date+'.csv',index=False)
+	data.to_csv('withsentiment/MSFT'+date+'.csv',index=False)
